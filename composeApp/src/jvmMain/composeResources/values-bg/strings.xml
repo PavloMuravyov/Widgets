@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="today">Днес</string>
+    <string name="wind_speed">Скорост на вятъра</string>
+    <string name="day_length">Продължителност на деня</string>
+    <string name="night_length">Продължителност на нощта</string>
+    <string name="wind_speed_unit">m/s</string>
+    <string name="hourly">По часове</string>
+    <string name="daily">Седмица</string>
+    <string name="save">Запази</string>
+    <string name="add">Добави</string>
+    <string name="all_notes">Всички бележки</string>
+    <string name="delete">Изтрий</string>
+    <string name="note_hint">Въведете бележка...</string>
+    <string name="widgets_settings">Настройки на джаджетите</string>
+    <string name="widget_name_title">Име на джаджета</string>
+    <string name="widget_size_title">Размер</string>
+    <string name="widget_show_toggle">Показване на джаджета</string>
+    <string name="widget_background_style_title">Стил на фона</string>
+    <string name="widget_launch_at_startup_title">Стартиране при зареждане</string>
+    <string name="widget_extra_dimming_title">Допълнително затъмняване</string>
+    <string name="widget_mode_always_title">Винаги</string>
+    <string name="widget_mode_auto_title">Автоматично</string>
+    <string name="widget_mode_never_title">Никога</string>
+    <string name="add_widgets_title">Добавяне на уиджети</string>
+</resources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="today">Idag</string>
+    <string name="wind_speed">Vindhastighet</string>
+    <string name="day_length">Daglängd</string>
+    <string name="night_length">Nattlängd</string>
+    <string name="wind_speed_unit">m/s</string>
+    <string name="hourly">Timme för timme</string>
+    <string name="daily">Vecka</string>
+    <string name="save">Spara</string>
+    <string name="add">Lägg till</string>
+    <string name="all_notes">Alla anteckningar</string>
+    <string name="delete">Ta bort</string>
+    <string name="note_hint">Skriv en anteckning...</string>
+    <string name="widgets_settings">Widgetinställningar</string>
+    <string name="widget_name_title">Widgetnamn</string>
+    <string name="widget_size_title">Storlek</string>
+    <string name="widget_show_toggle">Visa widget</string>
+    <string name="widget_background_style_title">Bakgrundsstil</string>
+    <string name="widget_launch_at_startup_title">Starta vid uppstart</string>
+    <string name="widget_extra_dimming_title">Extra nedtoning</string>
+    <string name="widget_mode_always_title">Alltid</string>
+    <string name="widget_mode_auto_title">Automatiskt</string>
+    <string name="widget_mode_never_title">Aldrig</string>
+    <string name="add_widgets_title">Lägg till widgets</string>
+</resources>

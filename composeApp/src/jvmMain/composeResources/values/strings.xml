@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="windowName">WidgetsApp</string>
+    <string name="degreeSymbol">°</string>
+    <string name="MaxTemp">▲</string>
+    <string name="MinTemp">▼</string>
+    <string name="RainSchemeIcon">🌧</string>
+    <string name="SnowSchemeIcon">❄️</string>
+    <string name="today">Today</string>
+    <string name="wind_speed">Wind Speed</string>
+    <string name="day_length">Day Length</string>
+    <string name="night_length">Night Length</string>
+    <string name="wind_speed_unit">m/s</string>
+    <string name="hourly">Hours</string>
+    <string name="daily">Week</string>
+    <string name="save">Save</string>
+    <string name="add">Add</string>
+    <string name="all_notes">All Notes</string>
+    <string name="delete">Delete</string>
+    <string name="note_hint">Enter a note...</string>
+    <string name="widgets_settings">Widgets settings</string>
+    <string name="widget_name_title">Widget name</string>
+    <string name="widget_size_title">Size</string>
+    <string name="widget_show_toggle">Show widget</string>
+    <string name="widget_background_style_title">Background style</string>
+    <string name="widget_launch_at_startup_title">Launch at startup</string>
+    <string name="widget_extra_dimming_title">Additional dimming</string>
+    <string name="widget_mode_always_title">Always</string>
+    <string name="widget_mode_auto_title">Automatic</string>
+    <string name="widget_mode_never_title">Never</string>
+    <string name="add_widgets_title">Add widgets</string>
+</resources>

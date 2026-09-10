@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="today">今日</string>
+    <string name="wind_speed">風速</string>
+    <string name="day_length">日照時間</string>
+    <string name="night_length">夜間時間</string>
+    <string name="wind_speed_unit">メートル/秒</string>
+    <string name="hourly">時間ごと</string>
+    <string name="daily">週間</string>
+    <string name="save">保存</string>
+    <string name="add">追加</string>
+    <string name="all_notes">すべてのメモ</string>
+    <string name="delete">削除</string>
+    <string name="note_hint">メモを入力...</string>
+    <string name="widgets_settings">ウィジェット設定</string>
+    <string name="widget_name_title">ウィジェット名</string>
+    <string name="widget_size_title">サイズ</string>
+    <string name="widget_show_toggle">ウィジェットを表示</string>
+    <string name="widget_background_style_title">背景スタイル</string>
+    <string name="widget_launch_at_startup_title">起動時に開始</string>
+    <string name="widget_extra_dimming_title">追加の減光</string>
+    <string name="widget_mode_always_title">常に</string>
+    <string name="widget_mode_auto_title">自動</string>
+    <string name="widget_mode_never_title">しない</string>
+    <string name="add_widgets_title">ウィジェットを追加</string>
+</resources>

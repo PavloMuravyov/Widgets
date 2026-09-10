@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="today">今天</string>
+    <string name="wind_speed">风速</string>
+    <string name="day_length">白昼长度</string>
+    <string name="night_length">夜晚长度</string>
+    <string name="wind_speed_unit">米/秒</string>
+    <string name="hourly">逐小时</string>
+    <string name="daily">本周</string>
+    <string name="save">保存</string>
+    <string name="add">添加</string>
+    <string name="all_notes">所有笔记</string>
+    <string name="delete">删除</string>
+    <string name="note_hint">输入笔记...</string>
+    <string name="widgets_settings">小组件设置</string>
+    <string name="widget_name_title">小组件名称</string>
+    <string name="widget_size_title">大小</string>
+    <string name="widget_show_toggle">显示小组件</string>
+    <string name="widget_background_style_title">背景样式</string>
+    <string name="widget_launch_at_startup_title">开机启动</string>
+    <string name="widget_extra_dimming_title">额外变暗</string>
+    <string name="widget_mode_always_title">始终</string>
+    <string name="widget_mode_auto_title">自动</string>
+    <string name="widget_mode_never_title">从不</string>
+    <string name="add_widgets_title">添加小部件</string>
+</resources>

@@ -1,0 +1,3 @@
+package widgets.widgetsModule.widgetsManager.Utils.DragGusturesHandler
+
+internal class DragGestureScope

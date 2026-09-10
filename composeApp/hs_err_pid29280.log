@@ -1,0 +1,23 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x0000748511ffe578, pid=29280, tid=29506
+#
+# JRE version: OpenJDK Runtime Environment JBR-21.0.11+10-1163.116-jcef (21.0.11+10) (build 21.0.11+10-b1163.116)
+# Java VM: OpenJDK 64-Bit Server VM JBR-21.0.11+10-1163.116-jcef (21.0.11+10-b1163.116, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, linux-amd64)
+# Problematic frame:
+# C  [libtdjni.linux_amd64_gnu_ssl312585505148601535942.so+0xbfe578]
+#
+# Core dump will be written. Default location: Core dumps may be processed with "/usr/lib/systemd/systemd-coredump %P %u %g %s %t 9223372036854775808 %h %d" (or dumping to /home/pavlo/IdeaProjects/Widgets/composeApp/core.29280)
+#
+# If you would like to submit a bug report, please visit:
+#   https://youtrack.jetbrains.com/issues/JBR
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dcompose.reload.argfile=/home/pavlo/IdeaProjects/Widgets/composeApp/build/run/jvmMain/jvmMain.argfile -Dcompose.reload.build.continuous=false -Dcompose.reload.build.warmup=true -Dcompose.reload.buildSystem=Gradle -Dcompose.reload.devToolsClasspath=/home/pavlo/.gradle/caches/modules-2/files-2.1/org.jetbrains.compose.hot-reload/hot-reload-devtools/1.1.0-rc01/78fcce24e64e2174ccc11726741627dedb688645/hot-reload-devtools-1.1.0-rc01.jar:/home/pavlo/.gradle/caches/modules-2/files-2.1/org.jetbrains.compose.hot-reload/hot-reload-devtools-api/1.1.0-rc01/9f0ec05d6e20592db92b208fa63f79bfd740a060/hot-reload-devtools-api-1.1.0-rc01.jar:/home/pavlo/.gradle/caches/modules-2/files-2.1/org.jetbrains.compose.hot-reload/hot-reload-orchestration/1.1.0-rc01/9dd84aa541c8ced0d9ed58bb8d408c1e7a0501/hot-reload-orchestration-1.1.0-rc01.jar:/home/pavlo/.gradle/caches/modules-2/files-2.1/org.jetbrains.compose.hot-reload/hot-reload-core/1.1.0-rc01/efc32fd306e480e154660cc54cb5c9b889a571a2/hot-reload-core-1.1.0-rc01.jar:/home/pavlo/.gradle/caches/modules-2/files-2.1/org.jetbrains.compose.hot-reload/hot-reload-runtime-api-jvm/1.1.0-rc01/61c13a79480c55140cbd9fe1ca651d86efcbee7/hot-reload-runtime-api-jvm-1.1.0-rc01.jar:/home/pavlo/.gradle/caches/modules-2/files-2.1/org.jetbrains.compose.desktop/desktop-jvm/1.10.0/42facd9840309ac4eb841a986c5d1b97d2780471/desktop-jvm-1.10.0.jar:/home/pavlo/.gradle/caches/modules-2/files-2.1/org.jetbrains.compose.components/components-resources-desktop/1.10.0/c6115b607f77e9d033de360f989850d3824bf112/library-desktop-1.10.0.jar:/home/pavlo/.gradle/caches/modules-2/files-2.1/io.sellmair/evas-compose-jvm/1.4.0/a89b78f345d4a21a29c295820e4aa931aec1b93b/evas-compose-jvm-1.4.0.jar:/home/pavlo/.gradle/caches/modules-2/files-2.1/io.sellmair/evas-jvm/1.4.0/3c6955af5c56c65290575b2b998ec166c5079de4/evas-jvm-1.4.0.jar:/home/pavlo/.gradle/caches/modules-2/files-2.1/org.jetbrains.skiko/skiko-awt-runtime-linux-x64/0.9.37.3/aa9d80683c4b8fd560e22eb53a70b335e8281b66/skiko-awt-runtime-linux-x64-0.9.37.3.jar:/home/pavlo/.gradle/caches/modules-2/files-2.1/org.jetbrains.compose.material3/material3-desktop/1.9.0/19004c4eb3dc6618eb66a076bbe3d7e1a2e7b85/material3-desktop-1.9.0.jar:/home/pavlo/.gradle/cac-Dcompose.reload.devToolsDetached=false -Dcompose.reload.devToolsEnabled=true -Dcompose.reload.devToolsHeadless=false -Dcompose.reload.devToolsTransparencyEnabled=false -Dcompose.reload.dirtyResolveDepthLimit=5 -Dcompose.reload.effectsEnabled=true -Dcompose.reload.isActive=true -Dcompose.reload.launchMode=GradleBlocking -Dcompose.reload.logLevel=Info -Dcompose.reload.logStdout=false -Dcompose.reload.mainClass=widgets.MainKt -Dcompose.reload.pidFile=/home/pavlo/IdeaProjects/Widgets/composeApp/build/run/jvmMain/jvmMain.pid -Dcompose.reload.staticsReinitializeMode=AllDirty -Dcompose.reload.virtualMethodResolveEnabled=true -Dgradle.build.project=:composeApp -Dgradle.build.root=/home/pavlo/IdeaProjects/Widgets -Dgradle.build.task=hotReloadJvmMain -Dgradle.offline.mode=false -Dorg.gradle.java.home=/home/pavlo/.jdks/corretto-21.0.10 -XX:+IgnoreUnrecognizedVMOptions -XX:+AllowEnhancedClassRedefinition -javaagent:/home/pavlo/.gradle/caches/modules-2/files-2.1/org.jetbrains.compose.hot-reload/hot-reload-agent/1.1.0-rc01/d619ddba0d0db74264c14db8b83c31349e4855b2/hot-reload-agent-1.1.0-rc01.jar -Dfile.encoding=UTF-8 -Duser.country=UA -Duser.language=uk -Duser.variant -Dawt.toolkit.name=XToolkit widgets.MainKt
+
+Host: 

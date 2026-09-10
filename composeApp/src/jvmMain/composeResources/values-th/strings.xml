@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="today">วันนี้</string>
+    <string name="wind_speed">ความเร็วลม</string>
+    <string name="day_length">ความยาวของวัน</string>
+    <string name="night_length">ความยาวของคืน</string>
+    <string name="wind_speed_unit">m/s</string>
+    <string name="hourly">รายชั่วโมง</string>
+    <string name="daily">สัปดาห์</string>
+    <string name="save">บันทึก</string>
+    <string name="add">เพิ่ม</string>
+    <string name="all_notes">บันทึกทั้งหมด</string>
+    <string name="delete">ลบ</string>
+    <string name="note_hint">ป้อนบันทึก...</string>
+    <string name="widgets_settings">การตั้งค่าวิดเจ็ต</string>
+    <string name="widget_name_title">ชื่อวิดเจ็ต</string>
+    <string name="widget_size_title">ขนาด</string>
+    <string name="widget_show_toggle">แสดงวิดเจ็ต</string>
+    <string name="widget_background_style_title">สไตล์พื้นหลัง</string>
+    <string name="widget_launch_at_startup_title">เริ่มทำงานเมื่อเปิดเครื่อง</string>
+    <string name="widget_extra_dimming_title">การหรี่แสงเพิ่มเติม</string>
+    <string name="widget_mode_always_title">เสมอ</string>
+    <string name="widget_mode_auto_title">อัตโนมัติ</string>
+    <string name="widget_mode_never_title">ไม่เคย</string>
+    <string name="add_widgets_title">เพิ่มวิดเจ็ต</string>
+</resources>

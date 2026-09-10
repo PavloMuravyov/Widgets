@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="today">Vandaag</string>
+    <string name="wind_speed">Windsnelheid</string>
+    <string name="day_length">Daglengte</string>
+    <string name="night_length">Nachtlengte</string>
+    <string name="wind_speed_unit">m/s</string>
+    <string name="hourly">Per uur</string>
+    <string name="daily">Week</string>
+    <string name="save">Opslaan</string>
+    <string name="add">Toevoegen</string>
+    <string name="all_notes">Alle notities</string>
+    <string name="delete">Verwijderen</string>
+    <string name="note_hint">Voer een notitie in...</string>
+    <string name="widgets_settings">Widgetinstellingen</string>
+    <string name="widget_name_title">Widgetnaam</string>
+    <string name="widget_size_title">Grootte</string>
+    <string name="widget_show_toggle">Widget weergeven</string>
+    <string name="widget_background_style_title">Achtergrondstijl</string>
+    <string name="widget_launch_at_startup_title">Starten bij opstarten</string>
+    <string name="widget_extra_dimming_title">Extra verduistering</string>
+    <string name="widget_mode_always_title">Altijd</string>
+    <string name="widget_mode_auto_title">Automatisch</string>
+    <string name="widget_mode_never_title">Nooit</string>
+    <string name="add_widgets_title">Widgets toevoegen</string>
+</resources>

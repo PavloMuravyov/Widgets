@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="today">Сьогодні</string>
+    <string name="wind_speed">Швидкість вітру</string>
+    <string name="day_length">Тривалість дня</string>
+    <string name="night_length">Тривалість ночі</string>
+    <string name="wind_speed_unit">м/с</string>
+    <string name="hourly">Погодинно</string>
+    <string name="daily">Тиждень</string>
+    <string name="save">Зберегти</string>
+    <string name="add">Додати</string>
+    <string name="all_notes">Усі нотатки</string>
+    <string name="delete">Видалити</string>
+    <string name="note_hint">Введіть нотатку...</string>
+    <string name="widgets_settings">Налаштування віджетів</string>
+    <string name="widget_name_title">Назва віджета</string>
+    <string name="widget_size_title">Розмір</string>
+    <string name="widget_show_toggle">Показувати віджет</string>
+    <string name="widget_background_style_title">Стиль фону</string>
+    <string name="widget_launch_at_startup_title">Запуск при старті</string>
+    <string name="widget_extra_dimming_title">Додаткове затемнення</string>
+    <string name="widget_mode_always_title">Завжди</string>
+    <string name="widget_mode_auto_title">Автоматично</string>
+    <string name="widget_mode_never_title">Ніколи</string>
+    <string name="add_widgets_title">Додати віджети</string>
+</resources>

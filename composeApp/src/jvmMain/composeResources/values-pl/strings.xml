@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="today">Dzisiaj</string>
+    <string name="wind_speed">Prędkość wiatru</string>
+    <string name="day_length">Długość dnia</string>
+    <string name="night_length">Długość nocy</string>
+    <string name="wind_speed_unit">m/s</string>
+    <string name="hourly">Co godzinę</string>
+    <string name="daily">Tydzień</string>
+    <string name="save">Zapisz</string>
+    <string name="add">Dodaj</string>
+    <string name="all_notes">Wszystkie notatki</string>
+    <string name="delete">Usuń</string>
+    <string name="note_hint">Wpisz notatkę...</string>
+    <string name="widgets_settings">Ustawienia widżetów</string>
+    <string name="widget_name_title">Nazwa widżetu</string>
+    <string name="widget_size_title">Rozmiar</string>
+    <string name="widget_show_toggle">Pokaż widżet</string>
+    <string name="widget_background_style_title">Styl tła</string>
+    <string name="widget_launch_at_startup_title">Uruchom przy starcie</string>
+    <string name="widget_extra_dimming_title">Dodatkowe przyciemnienie</string>
+    <string name="widget_mode_always_title">Zawsze</string>
+    <string name="widget_mode_auto_title">Automatycznie</string>
+    <string name="widget_mode_never_title">Nigdy</string>
+    <string name="add_widgets_title">Dodaj widgety</string>
+</resources>

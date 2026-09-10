@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="today">Bugün</string>
+    <string name="wind_speed">Rüzgar Hızı</string>
+    <string name="day_length">Gün uzunluğu</string>
+    <string name="night_length">Gece uzunluğu</string>
+    <string name="wind_speed_unit">m/s</string>
+    <string name="hourly">Saatlik</string>
+    <string name="daily">Hafta</string>
+    <string name="save">Kaydet</string>
+    <string name="add">Ekle</string>
+    <string name="all_notes">Tüm notlar</string>
+    <string name="delete">Sil</string>
+    <string name="note_hint">Not girin...</string>
+    <string name="widgets_settings">Widget ayarları</string>
+    <string name="widget_name_title">Widget adı</string>
+    <string name="widget_size_title">Boyut</string>
+    <string name="widget_show_toggle">Widget'ı göster</string>
+    <string name="widget_background_style_title">Arka plan stili</string>
+    <string name="widget_launch_at_startup_title">Başlangıçta çalıştır</string>
+    <string name="widget_extra_dimming_title">Ek karartma</string>
+    <string name="widget_mode_always_title">Her zaman</string>
+    <string name="widget_mode_auto_title">Otomatik</string>
+    <string name="widget_mode_never_title">Asla</string>
+    <string name="add_widgets_title">Widget ekle</string>
+</resources>

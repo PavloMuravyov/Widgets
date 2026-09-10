@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="today">Dnes</string>
+    <string name="wind_speed">Rychlost větru</string>
+    <string name="day_length">Délka dne</string>
+    <string name="night_length">Délka noci</string>
+    <string name="wind_speed_unit">m/s</string>
+    <string name="hourly">Po hodinách</string>
+    <string name="daily">Týden</string>
+    <string name="save">Uložit</string>
+    <string name="add">Přidat</string>
+    <string name="all_notes">Všechny poznámky</string>
+    <string name="delete">Smazat</string>
+    <string name="note_hint">Zadejte poznámku...</string>
+    <string name="widgets_settings">Nastavení widgetů</string>
+    <string name="widget_name_title">Název widgetu</string>
+    <string name="widget_size_title">Velikost</string>
+    <string name="widget_show_toggle">Zobrazit widget</string>
+    <string name="widget_background_style_title">Styl pozadí</string>
+    <string name="widget_launch_at_startup_title">Spustit při startu</string>
+    <string name="widget_extra_dimming_title">Dodatečné ztmavení</string>
+    <string name="widget_mode_always_title">Vždy</string>
+    <string name="widget_mode_auto_title">Automaticky</string>
+    <string name="widget_mode_never_title">Nikdy</string>
+    <string name="add_widgets_title">Přidat widgety</string>
+</resources>

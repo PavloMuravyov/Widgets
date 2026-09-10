@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="today">Ma</string>
+    <string name="wind_speed">Szélsebesség</string>
+    <string name="day_length">Nappal hossza</string>
+    <string name="night_length">Éjszaka hossza</string>
+    <string name="wind_speed_unit">m/s</string>
+    <string name="hourly">Óránként</string>
+    <string name="daily">Hét</string>
+    <string name="save">Mentés</string>
+    <string name="add">Hozzáadás</string>
+    <string name="all_notes">Összes jegyzet</string>
+    <string name="delete">Törlés</string>
+    <string name="note_hint">Írjon egy jegyzetet...</string>
+    <string name="widgets_settings">Widgetbeállítások</string>
+    <string name="widget_name_title">Widget neve</string>
+    <string name="widget_size_title">Méret</string>
+    <string name="widget_show_toggle">Widget megjelenítése</string>
+    <string name="widget_background_style_title">Háttérstílus</string>
+    <string name="widget_launch_at_startup_title">Indítás rendszerindításkor</string>
+    <string name="widget_extra_dimming_title">További elsötétítés</string>
+    <string name="widget_mode_always_title">Mindig</string>
+    <string name="widget_mode_auto_title">Automatikusan</string>
+    <string name="widget_mode_never_title">Soha</string>
+    <string name="add_widgets_title">Widgetek hozzáadása</string>
+</resources>
