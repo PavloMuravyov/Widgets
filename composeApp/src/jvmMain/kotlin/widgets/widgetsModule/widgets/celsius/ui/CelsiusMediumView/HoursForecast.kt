@@ -70,7 +70,7 @@ fun HoursForecast(
                         formatter)
                 }
                 WidgetSizes.Small -> {
-                    Unit
+
                 }
             }
 

@@ -7,7 +7,7 @@ import com.sun.jna.*
 
 abstract class GSettingsMonitor<T>(
     private val systemContext: SystemContext,
-    private val schema: String,
+    val schema: String,
     private val key: String
 ) {
 

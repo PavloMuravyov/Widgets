@@ -8,24 +8,22 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.rememberGraphicsLayer
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.rememberWindowState
-import widgets.widgetsModule.managers.SystemDataManager.SystemDataManager
-import widgets.widgetsModule.managers.SystemDataManager.model.MonitorArea
-import widgets.widgetsModule.widgets.widgetsWindow.Configurator.ConfigWindow
-import widgets.widgetsModule.widgets.widgetsWindow.DesktopReplacer.DesktopReplacer
 import io.github.fletchmckee.liquid.rememberLiquidState
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import widgets.composeapp.generated.resources.Res
 import widgets.composeapp.generated.resources.icon
 import widgets.composeapp.generated.resources.windowName
+import widgets.widgetsModule.managers.SystemDataManager.SystemDataManager
+import widgets.widgetsModule.managers.SystemDataManager.model.MonitorArea
+import widgets.widgetsModule.widgets.widgetsWindow.Configurator.ConfigWindow
+import widgets.widgetsModule.widgets.widgetsWindow.DesktopReplacer.DesktopReplacer
 
 @Composable
 fun widgetsWindow(
@@ -92,7 +90,7 @@ fun widgetWindowContent(
     DesktopReplacer(
         systemDataManager,
         liquidState,
-        onMouse3Click = { it ->
+        onMouse3Click = {
             widgetsManager.showDesktopMenu(it)
         }
     )
