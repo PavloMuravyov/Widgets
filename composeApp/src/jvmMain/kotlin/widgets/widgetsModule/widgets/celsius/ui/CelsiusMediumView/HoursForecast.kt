@@ -1,12 +1,7 @@
 package widgets.widgetsModule.widgets.celsius.ui.CelsiusMediumView
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
@@ -15,16 +10,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.resources.stringResource
 import widgets.Theme.Colors
 import widgets.Theme.Paddings
-import widgets.widgetsModule.data.models.WidgetSizes
-import widgets.widgetsModule.widgets.celsius.CelsiusViewModel
-import widgets.widgetsModule.widgets.celsius.domain.model.ForecastDay
-import widgets.widgetsModule.widgets.celsius.ui.CelsiusDimens
-import widgets.widgetsModule.widgets.celsius.ui.CelsiusLargeView.ForecastCardLarge
-import org.jetbrains.compose.resources.stringResource
 import widgets.composeapp.generated.resources.Res
 import widgets.composeapp.generated.resources.degreeSymbol
+import widgets.widgetsModule.data.models.WidgetSizes
+import widgets.widgetsModule.widgets.celsius.CelsiusViewModel
+import widgets.widgetsModule.widgets.celsius.ui.CelsiusDimens
+import widgets.widgetsModule.widgets.celsius.ui.CelsiusLargeView.ForecastCardLarge
 import java.time.format.DateTimeFormatter
 
 @Composable

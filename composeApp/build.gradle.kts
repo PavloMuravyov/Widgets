@@ -1,5 +1,3 @@
-
-
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import java.util.Properties
 import kotlin.apply
@@ -15,7 +13,7 @@ plugins {
     id("io.github.kdroidfilter.compose.linux.packagedeps") version "0.2.5"
 }
 
-linuxDebConfig{
+linuxDebConfig {
     debDepends.set(listOf("imagemagick"))
 
 }
@@ -31,7 +29,7 @@ buildConfig {
     }
 
     buildConfigField("String", "WEATHER_API_KEY", "\"${localProps.getProperty("weather.api.key", "")}\"")
-    buildConfigField("String","HERE_GEOCODING_API_KEY", "\"${localProps.getProperty("here.geocoding.api.key", "")}\"")
+    buildConfigField("String", "HERE_GEOCODING_API_KEY", "\"${localProps.getProperty("here.geocoding.api.key", "")}\"")
 }
 
 kotlin {
@@ -103,9 +101,6 @@ kotlin {
             implementation("com.ibm.icu:icu4j:75.1")
 
 
-
-
-
         }
     }
 }
@@ -121,7 +116,8 @@ compose.desktop {
             "-XX:+UseZGC",
             "-XX:+ZGenerational",
 
-        )
+            )
+
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
@@ -130,11 +126,21 @@ compose.desktop {
 
 
             modules(
-              "java.security.jgss",
+                "java.security.jgss",
                 "jdk.security.auth",
                 "jdk.localedata"
             )
-              }
+
+            linux {
+                iconFile.set(project.file("src/jvmMain/composeResources/drawable/icon.png"))
+            }
+
+
+        }
+
+        buildTypes.release.proguard {
+            configurationFiles.from("proguard-rules.pro")
+        }
     }
 }
 

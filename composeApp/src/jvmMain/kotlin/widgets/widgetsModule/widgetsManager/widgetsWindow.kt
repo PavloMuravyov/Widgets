@@ -21,8 +21,10 @@ import widgets.widgetsModule.managers.SystemDataManager.model.MonitorArea
 import widgets.widgetsModule.widgets.widgetsWindow.Configurator.ConfigWindow
 import widgets.widgetsModule.widgets.widgetsWindow.DesktopReplacer.DesktopReplacer
 import io.github.fletchmckee.liquid.rememberLiquidState
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import widgets.composeapp.generated.resources.Res
+import widgets.composeapp.generated.resources.icon
 import widgets.composeapp.generated.resources.windowName
 
 @Composable
@@ -42,6 +44,7 @@ fun widgetsWindow(
         visible = true,
         transparent = true,
         state = windowState,
+        icon = painterResource(Res.drawable.icon),
 
         title = stringResource(Res.string.windowName)
     ) {

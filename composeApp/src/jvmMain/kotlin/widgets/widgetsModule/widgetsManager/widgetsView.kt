@@ -2,7 +2,7 @@ package widgets.widgetsModule.widgetsManager
 
 import androidx.compose.runtime.*
 import androidx.compose.ui.unit.Density
-import androidx.compose.ui.unit.IntOffset
+import io.github.fletchmckee.liquid.LiquidState
 import widgets.widgetsModule.data.models.WidgetsTypes
 import widgets.widgetsModule.managers.SystemDataManager.model.MonitorArea
 import widgets.widgetsModule.widgets.appstime.AppsTimeViewModel
@@ -13,15 +13,6 @@ import widgets.widgetsModule.widgets.clock.ClockView
 import widgets.widgetsModule.widgets.clock.ClockViewModel
 import widgets.widgetsModule.widgets.notes.NotesView
 import widgets.widgetsModule.widgets.notes.NotesViewModel
-import io.github.fletchmckee.liquid.LiquidState
-import widgets.widgetsModule.data.models.WidgetSizes
-import widgets.widgetsModule.data.models.dpSize
-import widgets.widgetsModule.widgetsExtensions.ZEROMQ.Msg
-import widgets.widgetsModule.widgetsExtensions.ZEROMQ.MsgType
-import widgets.widgetsModule.widgetsExtensions.ZEROMQ.ZmqRouterService
-import widgets.widgetsModule.widgetsExtensions.extensionVIew
-import widgets.widgetsModule.widgetsExtensions.extensionWidgetContainer
-
 
 @Composable
 fun widgetsView(
@@ -76,11 +67,6 @@ fun widgetsView(
 
             }
     }
-    }
-
-    baseWidgetScaledDimensions?.let {
-        extensionVIew(it, liquidState)
-
     }
 
 }

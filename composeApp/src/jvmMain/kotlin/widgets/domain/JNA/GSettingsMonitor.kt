@@ -1,6 +1,5 @@
 package widgets.domain.JNA
 
-// GSettingsMonitor.kt — абстрактний базовий клас
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import com.sun.jna.*

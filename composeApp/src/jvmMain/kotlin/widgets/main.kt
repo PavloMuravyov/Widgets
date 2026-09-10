@@ -6,9 +6,6 @@ import androidx.compose.material.Typography
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -19,30 +16,22 @@ import coil3.PlatformContext
 import coil3.SingletonImageLoader
 import coil3.memory.MemoryCache
 import coil3.svg.SvgDecoder
+import kotlinx.coroutines.flow.first
+import org.jetbrains.compose.resources.Font
+import org.koin.core.context.GlobalContext.startKoin
+import org.koin.core.context.stopKoin
+import org.koin.mp.KoinPlatform
 import widgets.DI.dependencyInjections
+import widgets.composeapp.generated.resources.Res
+import widgets.composeapp.generated.resources.Roboto_Regular
 import widgets.domain.DensityProvider.DensityProvider
 import widgets.domain.SocketManager.SocketManager
 import widgets.domain.launchDetachedScript
 import widgets.domain.prepareRestartScript
 import widgets.widgetsModule.managers.SystemDataManager.SystemDataManager
-
 import widgets.widgetsModule.widgetsManager.WidgetsManager
 import widgets.widgetsModule.widgetsManager.widgetsWindow
 
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
-import org.jetbrains.compose.resources.Font
-import org.koin.core.context.GlobalContext.startKoin
-import org.koin.core.context.stopKoin
-import org.koin.mp.KoinPlatform
-import widgets.composeapp.generated.resources.Res
-import widgets.composeapp.generated.resources.Roboto_Regular
-import widgets.widgetsModule.data.models.WidgetSizes
-import widgets.widgetsModule.data.models.dpSize
-import widgets.widgetsModule.widgetsExtensions.ExtensionWidgetsManager
-import widgets.widgetsModule.widgetsExtensions.ZEROMQ.Msg
-import widgets.widgetsModule.widgetsExtensions.ZEROMQ.MsgType
-import widgets.widgetsModule.widgetsExtensions.ZEROMQ.ZmqRouterService
 
 fun main() {
 
@@ -58,14 +47,6 @@ fun main() {
     val socketManager = KoinPlatform.getKoin().get<SocketManager>()
     val densityProvider = KoinPlatform.getKoin().get<DensityProvider>()
 
-
-    // TEST CALLING
- //   val extensionWidgetsManager = KoinPlatform.getKoin().get<ExtensionWidgetsManager>()
-
-
-
-
-
     application {
         SingletonImageLoader.setSafe {
             ImageLoader.Builder(PlatformContext.INSTANCE)
@@ -79,7 +60,6 @@ fun main() {
                 .build()
         }
 
-
         LaunchedEffect(Unit) {
             systemDataManager
                 .wakeUpStatus
@@ -89,7 +69,6 @@ fun main() {
                 }
         }
 
-
         val robotoFontFamily = FontFamily(
             Font(resource = Res.font.Roboto_Regular, weight = FontWeight.Normal),
         )
@@ -97,10 +76,6 @@ fun main() {
         val myTypography = Typography(
             defaultFontFamily = robotoFontFamily
         )
-
-
-
-
 
 
         MaterialTheme (
