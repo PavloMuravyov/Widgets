@@ -2,6 +2,8 @@
 
 ## A small desktop widget application for elementary OS.
 
+https://github.com/user-attachments/assets/6a8146ad-11a1-4f0b-bc0e-1c8ca37ae90e
+
 
 ## Features:
 #### - Notes
