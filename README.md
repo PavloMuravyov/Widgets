@@ -13,8 +13,8 @@ https://github.com/user-attachments/assets/6a8146ad-11a1-4f0b-bc0e-1c8ca37ae90e
 
 
 <p align="center">
-  <img src="assets/settings.png" width="400">
-  <img src="assets/settings1.png" width="400">
+  <img src="assets/settings.png" height="450">
+  <img src="assets/settings1.png" height="450">
 </p>
 
 ## Technology:
