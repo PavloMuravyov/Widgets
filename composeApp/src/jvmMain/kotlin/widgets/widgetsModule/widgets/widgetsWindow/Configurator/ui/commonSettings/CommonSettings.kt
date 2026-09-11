@@ -57,12 +57,6 @@ fun CommonSettings(modifier: Modifier, dimens: ConfigDimens, widgetsManager: Wid
             onDropDownMenuOverlayExpandedChanged)
 
 
-        ExtensionWidgetsAdder(
-            Modifier
-                .weight(1f)
-                .visibilityAlpha(!dropDownMenuOverlayExpanded)
-                .visibilityAlpha(!dropDownMenuBackgroundExpanded), dimens, widgetsManager,
-        )
 
         AutostartSettings (Modifier
             .weight(1f)
@@ -73,70 +67,4 @@ fun CommonSettings(modifier: Modifier, dimens: ConfigDimens, widgetsManager: Wid
 
 
     }
-}
-
-@Composable
-fun ExtensionWidgetsAdder(modifier: Modifier,dimens: ConfigDimens, widgetsManager: WidgetsManager,) {
-
-    Row(modifier
-        .fillMaxWidth()
-        .padding(Paddings.medium),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically,){
-
-        val addWidgetsLabel = stringResource(Res.string.add_widgets_title)
-
-        Text(addWidgetsLabel,
-            modifier = Modifier.weight(4f),
-            color = Colors.solidWhite,
-            fontSize = dimens.showLabelTextSize)
-
-
-        var showPicker by remember { mutableStateOf(false) }
-
-        Icon(Icons.Default.Folder, null ,
-            tint = Colors.solidWhite,
-            modifier = Modifier
-                .weight(1f)
-                .align(Alignment.CenterVertically)
-                .clickable(
-                onClick = {showPicker = true},
-                interactionSource = remember { MutableInteractionSource() },
-                indication = null
-            ))
-
-        if (showPicker) {
-            FilePicker {
-                showPicker = false
-
-                if (it != null) {
-                    println(it.absolutePath)
-                }
-            }
-        }
-
-    }
-
-}
-
-@Composable
-fun FilePicker(
-    onResult: (File?) -> Unit
-) {
-    AwtWindow(
-        create = {
-            object : FileDialog(null as Frame?, "Open file", LOAD) {
-                override fun setVisible(value: Boolean) {
-                    super.setVisible(value)
-
-                    if (file != null) {
-                        onResult(File(directory, file))
-                    } else {
-                        onResult(null)
-                    }
-                }
-            }
-        },
-        dispose = FileDialog::dispose
-    )
 }
