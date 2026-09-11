@@ -11,8 +11,11 @@ https://github.com/user-attachments/assets/6a8146ad-11a1-4f0b-bc0e-1c8ca37ae90e
 #### - Screen Time
 #### - Clock
 
-![settings](assets/settings.png) ![settings1](assets/settings1.png)
 
+<p align="center">
+  <img src="assets/settings.png" width="400">
+  <img src="assets/settings1.png" width="400">
+</p>
 
 ## Technology:
 #### Built with Kotlin Multiplatform, targeting the JVM for the desktop application.
