@@ -11,9 +11,11 @@ https://github.com/user-attachments/assets/6a8146ad-11a1-4f0b-bc0e-1c8ca37ae90e
 #### - Screen Time
 #### - Clock
 
-![settings](assets/settings.png)
-![settings1](assets/settings1.png)
 
+<p align="center">
+  <img src="assets/settings.png" height="450">
+  <img src="assets/settings1.png" height="450">
+</p>
 
 ## Technology:
 #### Built with Kotlin Multiplatform, targeting the JVM for the desktop application.
@@ -27,7 +29,7 @@ https://github.com/user-attachments/assets/6a8146ad-11a1-4f0b-bc0e-1c8ca37ae90e
 
 
 ## System Resource Usage:
-#### -RAM: ~100–350 MB, depending on widget activity and JVM Garbage Collector behavior. Memory usage is typically around 250 MB after startup, may temporarily increase during runtime, and can decrease as the JVM performs garbage collection.
+#### -RAM: ~100–400 MB, depending on widget activity and JVM Garbage Collector behavior. Memory usage is typically around 250 MB after startup, may temporarily increase during runtime, and can decrease as the JVM performs garbage collection.
 ![Low_memory_usage](assets/ramlow.png)
 ![high_memory_usage](assets/ramhigh.png)
 
