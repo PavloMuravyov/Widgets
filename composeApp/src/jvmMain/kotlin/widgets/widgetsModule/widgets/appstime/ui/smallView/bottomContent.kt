@@ -74,7 +74,7 @@ private fun AppsGridView(
 
         items(
             items = appsTime,
-            key = { it.first.appID } // ← Compose перевикористовує існуючі елементи
+            key = { it.first.appID }
         ) { appTime ->
 
 

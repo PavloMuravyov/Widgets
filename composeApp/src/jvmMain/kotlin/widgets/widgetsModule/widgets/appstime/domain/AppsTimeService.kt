@@ -1,5 +1,7 @@
 package widgets.widgetsModule.widgets.appstime.domain
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import widgets.domain.TimeService.DayInfo
 import widgets.widgetsModule.widgets.appstime.domain.model.AppData
 import widgets.widgetsModule.widgets.appstime.domain.model.RunningApplication
@@ -20,10 +22,14 @@ class AppsTimeService(
     val runningApplications = galaDbusListener.runningApplication
     private val seenThisMinute = MutableStateFlow<Set<RunningApplication>>(emptySet())
 
+
+    val scope = CoroutineScope(Dispatchers.Default)
+
     init {
         repository.scope.launch { galaDbusListener.startListening() }
         repository.scope.launch { collectRunningApps() }
         repository.scope.launch { collectMinuteTick() }
+
     }
 
     private suspend fun collectRunningApps() {
@@ -35,6 +41,20 @@ class AppsTimeService(
     }
 
     private suspend fun collectMinuteTick() {
+        repository.minutes
+            .filter { repository.todayScreenTime.value != null }
+            .collect {
+                repository.incrementScreenTime()
+                val today = repository.dayInfo.value
+                val activeApps = runningApplications.value.toSet()
+                if (activeApps.isNotEmpty()) {
+                    val apps = repository.appsMap.value
+                    activeApps.forEach { runningApp -> updateOrAddApp(apps, runningApp, today) }
+                }
+                repository.saveCurrentState()
+            }
+    }
+ /*   private suspend fun collectMinuteTick() {
         repository.minutes
             .filter { repository.todayScreenTime.value != null }
             .collect {
@@ -52,7 +72,7 @@ class AppsTimeService(
 
                 repository.saveCurrentState()
             }
-    }
+    }*/
 
     private fun updateOrAddApp(
         apps: Map<String, AppData>,

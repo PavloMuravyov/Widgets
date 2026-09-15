@@ -11,8 +11,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.FilterQuality
@@ -22,6 +25,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import coil3.compose.AsyncImagePainter
 import coil3.compose.rememberAsyncImagePainter
 import widgets.Theme.Colors
 import widgets.widgetsModule.widgets.appstime.domain.model.AppData
@@ -32,6 +36,7 @@ import java.io.File
 @Composable
 fun AppCard(appTime: Pair<AppData, ScreenTimeDay?>, textSize: TextUnit, textTimeSize: TextUnit, modifier: Modifier) {
 
+
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -41,28 +46,25 @@ fun AppCard(appTime: Pair<AppData, ScreenTimeDay?>, textSize: TextUnit, textTime
 
         appIconView(modifier.weight(1f), appTime.first.appIconUrl)
 
-
         appTimeView(Modifier.weight(2.5f), appTime.first.appName, textSize, textTimeSize, appTime.second )
     }
 }
 
 
 @Composable
-fun appIconView(modifier: Modifier, appIconUrl: String,
-                padding: Dp = 4.dp,
-                iconSize: Dp = 24.dp,){
-
-        Box(
-            modifier.padding(padding),
-            contentAlignment = Alignment.Center
-        ) {
-
-            AsyncImage(
-                model = appIconUrl,
-                contentDescription = appIconUrl,
-                modifier = Modifier.height(iconSize),
-                filterQuality = FilterQuality.Low,
-            )
+fun appIconView(
+    modifier: Modifier,
+    appIconUrl: String,
+    padding: Dp = 4.dp,
+    iconSize: Dp = 24.dp,
+) {
+    Box(modifier.padding(padding), contentAlignment = Alignment.Center) {
+        AsyncImage(
+            model = appIconUrl,
+            contentDescription = appIconUrl,
+            modifier = Modifier.height(iconSize),
+            filterQuality = FilterQuality.Low,
+        )
     }
 }
 

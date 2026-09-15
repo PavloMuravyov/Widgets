@@ -21,12 +21,14 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
+import java.io.File
 import java.time.ZoneId
 
 
@@ -63,8 +65,6 @@ class AppsTimeViewModel(
     }
 
 
-
-
     private val screenTimeFlow = combine(
         timesRepository.screenArchive,
         timesRepository.todayScreenTime
@@ -73,10 +73,17 @@ class AppsTimeViewModel(
     }
 
 
-
-
     val todayScreenTime = timesRepository.todayScreenTime
     val todayAppsTime = timesRepository.appsForDay
+        .map { list ->
+            list.filter { item ->
+                val iconPath = item.first.appIconUrl
+                iconPath.isNotBlank() && File(iconPath).exists()
+        }
+        }.stateIn(scope = viewModelScope, started = SharingStarted.Eagerly, initialValue = emptyList())
+
+
+
 
 
     val last7DaysScreenTime: StateFlow<List<ScreenTimeDay>> =
@@ -98,7 +105,10 @@ class AppsTimeViewModel(
         timesRepository.appsMap.map { map ->
             map.values
                 .map { app -> app to app.days.takeLast(7).sumOf { it.totalMinutes } }
-                .filter { (_, total) -> total > 0 }
+                .filter { (app, total) ->
+                    val iconPath = app.appIconUrl
+                    total > 0 && iconPath.isNotBlank() && File(iconPath).exists()
+                }
                 .sortedByDescending { (_, total) -> total }
         }
             .distinctUntilChanged()

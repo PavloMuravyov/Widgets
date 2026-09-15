@@ -17,6 +17,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -29,6 +30,7 @@ import widgets.Theme.Colors
 import widgets.widgetsModule.widgets.appstime.domain.model.AppData
 import widgets.widgetsModule.widgets.appstime.ui.utils.composables.appIconView
 import widgets.widgetsModule.widgets.appstime.ui.utils.utils.toFormattedTime
+import java.io.File
 
 
 @Composable
@@ -39,6 +41,7 @@ fun AppsTimeTable(
     cardHeight: Dp,
     iconHeight: Dp
 ) {
+
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         contentPadding = PaddingValues(
@@ -52,15 +55,13 @@ fun AppsTimeTable(
             key = { it.first.appID }
         ) { item ->
 
-
-            AppsMinimalCard(
-                item,
-                textTimeSize,
-                Modifier.width(cardWidth).height(cardHeight),
-                iconHeight
-            )
-
-        }
+                AppsMinimalCard(
+                    item,
+                    textTimeSize,
+                    Modifier.width(cardWidth).height(cardHeight),
+                    iconHeight
+                )
+            }
 
     }
 }
@@ -73,11 +74,12 @@ private fun AppsMinimalCard(
     iconHeight: Dp
 ) {
 
-        Row(
+    Row(
             modifier ,
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
+
             appIconView(Modifier.weight(1f), appTime.first.appIconUrl, padding = 0.dp, iconHeight)
             Box(
                 Modifier.weight(1.5f)

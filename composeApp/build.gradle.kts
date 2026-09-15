@@ -15,6 +15,8 @@ plugins {
 
 linuxDebConfig {
     debDepends.set(listOf("imagemagick"))
+    debDepends.set(listOf("wmctrl"))
+    debDepends.set(listOf("x11-utils"))
 
 }
 
@@ -122,7 +124,7 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "widgets"
-            packageVersion = "1.0.0"
+            packageVersion = "1.0.1"
 
 
             modules(
