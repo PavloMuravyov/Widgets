@@ -2,18 +2,15 @@ package widgets.widgetsModule.widgets.appstime.domain
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import widgets.domain.TimeService.DayInfo
 import widgets.widgetsModule.widgets.appstime.domain.model.AppData
 import widgets.widgetsModule.widgets.appstime.domain.model.RunningApplication
 import widgets.widgetsModule.widgets.appstime.domain.model.ScreenTimeDay
 import widgets.widgetsModule.widgets.appstime.domain.repository.GalaDbusListener
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.drop
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.getAndUpdate
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 
 class AppsTimeService(
     private val repository: TimesRepository,

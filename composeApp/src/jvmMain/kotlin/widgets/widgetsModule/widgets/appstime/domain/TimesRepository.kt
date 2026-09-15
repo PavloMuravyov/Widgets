@@ -1,39 +1,15 @@
 package widgets.widgetsModule.widgets.appstime.domain
 
-import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
 import widgets.domain.TimeService.DayInfo
 import widgets.domain.TimeService.TimeData
 import widgets.domain.TimeService.TimeService
 import widgets.domain.TimeService.isOlderThan
 import widgets.widgetsModule.managers.SystemDataManager.SystemDataManager
-import widgets.widgetsModule.widgets.appstime.domain.model.AppData
-import widgets.widgetsModule.widgets.appstime.domain.model.AppsTimeData
-import widgets.widgetsModule.widgets.appstime.domain.model.AppsTimeWidgetData
-import widgets.widgetsModule.widgets.appstime.domain.model.DailyMinutes
-import widgets.widgetsModule.widgets.appstime.domain.model.ScreenTimeArchive
-import widgets.widgetsModule.widgets.appstime.domain.model.ScreenTimeDay
-import widgets.widgetsModule.widgets.appstime.domain.model.ScreenTimeHistory
+import widgets.widgetsModule.widgets.appstime.domain.model.*
 import widgets.widgetsModule.widgets.appstime.domain.repository.AppsTimeStorageRepository
 import widgets.widgetsModule.widgets.appstime.domain.repository.ScreenTime.ScreenTimeArchiveProvider
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.drop
-import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.io.File
 import java.time.ZoneId
 
 
