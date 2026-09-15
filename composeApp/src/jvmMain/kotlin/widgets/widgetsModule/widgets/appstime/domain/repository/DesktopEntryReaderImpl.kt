@@ -3,6 +3,7 @@ package widgets.widgetsModule.widgets.appstime.domain.repository
 import java.io.File
 import java.util.concurrent.ConcurrentHashMap
 
+
 class DesktopEntryReaderImpl (
     private val iconResolver: IconResolver
 
@@ -16,25 +17,28 @@ class DesktopEntryReaderImpl (
     )
 
 
-
     private val cache = ConcurrentHashMap<String, Pair<String, String>>()
 
     override fun read(appId: String): Pair<String, String> {
 
         return cache.getOrPut(appId) {
 
-        val desktopFile = findDesktopFile(appId)
-            ?: return Pair(appId, "")
+            val desktopFile = findDesktopFile(appId)
+                ?: return Pair(appId, "")
 
-        val lines = desktopFile.readLines()
-        val name = lines.firstOrNull { it.startsWith("Name=") }
-            ?.removePrefix("Name=") ?: appId
-        val iconName = lines.firstOrNull { it.startsWith("Icon=") }
-            ?.removePrefix("Icon=") ?: ""
+            try {
+                val lines = desktopFile.readLines()
+                val name = lines.firstOrNull { it.startsWith("Name=") }
+                    ?.removePrefix("Name=") ?: appId
+                val iconName = lines.firstOrNull { it.startsWith("Icon=") }
+                    ?.removePrefix("Icon=") ?: ""
 
-        val iconPath = iconResolver.resolve(iconName)
+                val iconPath = iconResolver.resolve(iconName)
 
-         Pair(name, iconPath)
+                Pair(name, iconPath)
+            } catch (e: java.io.IOException) {
+                Pair(appId, "")
+            }
         }
     }
 
