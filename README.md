@@ -42,5 +42,5 @@ https://github.com/user-attachments/assets/6a8146ad-11a1-4f0b-bc0e-1c8ca37ae90e
 #### Install the .deb package using:
 
 ```bash
-sudo apt install ./widgets_1.0.0_amd64.deb
+sudo apt install ./widgets_1.0.1_amd64.deb
 ```
