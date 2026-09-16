@@ -1,10 +1,6 @@
 package widgets.widgetsModule.widgets.appstime.domain
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import widgets.domain.TimeService.DayInfo
 import widgets.widgetsModule.widgets.appstime.domain.model.AppData
@@ -12,64 +8,60 @@ import widgets.widgetsModule.widgets.appstime.domain.model.RunningApplication
 import widgets.widgetsModule.widgets.appstime.domain.model.ScreenTimeDay
 import widgets.widgetsModule.widgets.appstime.domain.repository.GalaDbusListener
 
+
 class AppsTimeService(
     private val repository: TimesRepository,
     private val galaDbusListener: GalaDbusListener,
 ) {
     val runningApplications = galaDbusListener.runningApplication
-    private val seenThisMinute = MutableStateFlow<Set<RunningApplication>>(emptySet())
+    val focusedApplication = galaDbusListener.focusedApplication
 
-
-    val scope = CoroutineScope(Dispatchers.Default)
 
     init {
         repository.scope.launch { galaDbusListener.startListening() }
-        repository.scope.launch { collectRunningApps() }
         repository.scope.launch { collectMinuteTick() }
-
+        repository.scope.launch { collectSecondsAccumulator() }
     }
 
-    private suspend fun collectRunningApps() {
-        runningApplications.collect { currentApps ->
-            if (currentApps.isNotEmpty()) {
-                seenThisMinute.update { it + currentApps }
-            }
-        }
-    }
 
     private suspend fun collectMinuteTick() {
         repository.minutes
             .filter { repository.todayScreenTime.value != null }
             .collect {
                 repository.incrementScreenTime()
-                val today = repository.dayInfo.value
-                val activeApps = runningApplications.value.toSet()
-                if (activeApps.isNotEmpty()) {
-                    val apps = repository.appsMap.value
-                    activeApps.forEach { runningApp -> updateOrAddApp(apps, runningApp, today) }
-                }
-                repository.saveCurrentState()
             }
     }
- /*   private suspend fun collectMinuteTick() {
-        repository.minutes
-            .filter { repository.todayScreenTime.value != null }
-            .collect {
-                repository.incrementScreenTime()
 
-                val today = repository.dayInfo.value
-                val activeApps = seenThisMinute.getAndUpdate { runningApplications.value.toSet() }
+    private suspend fun collectSecondsAccumulator() {
+        galaDbusListener.secondsAccumulator.collect { accumulator ->
+            if (repository.todayScreenTime.value == null) return@collect
 
-                if (activeApps.isNotEmpty()) {
-                    val apps = repository.appsMap.value
-                    activeApps.forEach { runningApp ->
-                        updateOrAddApp(apps, runningApp, today)
-                    }
-                }
+            val readyAppIds = accumulator.filterValues { it >= 60 }.keys
+            if (readyAppIds.isEmpty()) return@collect
 
+            val today = repository.dayInfo.value
+            var apps = repository.appsMap.value
+            var changed = false
+
+            readyAppIds.forEach { appId ->
+                val app = resolveApp(appId) ?: return@forEach
+                updateOrAddApp(apps, app, today)
+                galaDbusListener.consumeMinute(appId)
+                apps = repository.appsMap.value
+                changed = true
+            }
+
+            if (changed) {
                 repository.saveCurrentState()
             }
-    }*/
+        }
+    }
+
+
+
+    private fun resolveApp(appId: String): RunningApplication? =
+        focusedApplication.value?.takeIf { it.appId == appId }
+            ?: runningApplications.value.firstOrNull { it.appId == appId }
 
     private fun updateOrAddApp(
         apps: Map<String, AppData>,
@@ -77,6 +69,7 @@ class AppsTimeService(
         today: DayInfo,
     ) {
         val existing = apps[runningApp.appId]
+
         if (existing == null) {
             repository.addApp(
                 AppData(
@@ -88,6 +81,7 @@ class AppsTimeService(
             )
         } else {
             val todayIndex = existing.days.indexOfFirst { it.date == today }
+
             val updatedDays = if (todayIndex < 0) {
                 existing.days + ScreenTimeDay(today, 1)
             } else {
@@ -95,8 +89,10 @@ class AppsTimeService(
                     set(todayIndex, ScreenTimeDay(today, existing.days[todayIndex].totalMinutes + 1))
                 }
             }
+
             repository.updateAppDays(runningApp.appId, updatedDays)
         }
     }
 
 }
+

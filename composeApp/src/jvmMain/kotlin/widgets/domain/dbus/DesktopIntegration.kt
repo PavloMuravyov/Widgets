@@ -11,4 +11,6 @@ interface DesktopIntegration : DBusInterface {
 
     fun GetRunningApplications(): List<Array<Any>>
 
+    fun GetWindows(): List<Array<Any>>
+
 }

@@ -6,9 +6,13 @@ import kotlinx.coroutines.flow.StateFlow
 interface GalaDbusListener {
 
     val runningApplication: StateFlow<List<RunningApplication>>
+    val focusedApplication: StateFlow<RunningApplication?>
+    val secondsAccumulator: StateFlow<Map<String, Int>>
 
 
     suspend fun startListening()
 
     fun getRunningApplications()
+    fun getFocusedApplication()
+    fun consumeMinute(appId: String)
 }
