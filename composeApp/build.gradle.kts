@@ -14,10 +14,7 @@ plugins {
 }
 
 linuxDebConfig {
-    debDepends.set(listOf("imagemagick"))
-    debDepends.set(listOf("wmctrl"))
-    debDepends.set(listOf("x11-utils"))
-
+    debDepends.set(listOf("imagemagick", "wmctrl", "x11-utils"))
 }
 
 buildConfig {

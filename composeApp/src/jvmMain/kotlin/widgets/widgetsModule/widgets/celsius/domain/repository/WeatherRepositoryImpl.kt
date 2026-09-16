@@ -24,8 +24,8 @@ class WeatherRepositoryImpl(
         location: LocationData,
         intervalMillis: Long
     ): Flow<Weather> = flow {
-
         while (currentCoroutineContext().isActive) {
+
             try {
                 val localizedLocation = localizedLocationRepository.getLocation(location)
 
@@ -33,8 +33,10 @@ class WeatherRepositoryImpl(
 
                 emit(response.toDomainModel(localizedLocation))
             } catch (e: CancellationException) {
+
                 throw e
             } catch (e: Exception) {
+
                 e.printStackTrace()
             }
 

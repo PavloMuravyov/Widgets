@@ -1,46 +1,35 @@
 package widgets.widgetsModule.managers.SystemDataManager
 
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.platform.Font
-import androidx.compose.ui.unit.dp
 import widgets.widgetsModule.managers.SystemWallpapersManager.resizeAndCropWallpaper
 import widgets.domain.JNA.useCases.ColorSchemeMonitor
 import widgets.domain.JNA.GLibMainLoopService
 import widgets.domain.JNA.useCases.PictureOption
 import widgets.domain.JNA.useCases.WallpaperMonitor
 import widgets.domain.JNA.useCases.WallpaperMonitorMode
-import widgets.domain.SocketManager.SocketManager
 import widgets.domain.dbus.DisplayConfig.MonitorsChangeSignal
 import widgets.domain.dbus.Location.LocationRepository
 import widgets.domain.dbus.Network.InternetConnectivityMonitor
 import widgets.domain.dbus.SleepWakeListener
-import widgets.domain.launchDetachedScript
-import widgets.domain.prepareRestartScript
 import widgets.restartApplication
-import widgets.widgetsModule.managers.SystemWallpapersManager.WallpaperHolder
 import widgets.widgetsModule.managers.SystemDataManager.model.ColorScheme
 import widgets.widgetsModule.managers.SystemDataManager.model.MonitorArea
 import widgets.widgetsModule.managers.SystemDataManager.repository.GetPrimaryScreenBoundsRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.jetbrains.skia.Image
+import widgets.domain.dbus.Location.LocationData
 import java.awt.Rectangle
-import kotlin.system.exitProcess
 import kotlin.time.Duration.Companion.milliseconds
 
 class SystemDataManager(
@@ -67,7 +56,12 @@ class SystemDataManager(
     val availableMonitorArea: StateFlow<MonitorArea?> = _availableMonitorArea
 
 
-    val locationState = locationRepository.locationState
+    val locationState: StateFlow<LocationData?> = locationRepository.locationState
+        .stateIn(
+            scope = scope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = null
+        )
     val connectivityState = connectivityMonitor.connectivityFlow().stateIn(
         scope = scope,
         started = SharingStarted.WhileSubscribed(5000),

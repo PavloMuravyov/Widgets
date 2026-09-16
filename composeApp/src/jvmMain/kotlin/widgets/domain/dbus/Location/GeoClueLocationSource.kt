@@ -1,33 +1,23 @@
 package widgets.domain.dbus.Location
 
 import com.github.bfsmith.geotimezone.TimeZoneLookup
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import org.freedesktop.dbus.DBusPath
-import org.freedesktop.dbus.connections.impl.DBusConnection
 import org.freedesktop.dbus.connections.impl.DBusConnectionBuilder
-import org.freedesktop.dbus.exceptions.DBusException
 import org.freedesktop.dbus.interfaces.DBusSigHandler
 import org.freedesktop.dbus.interfaces.Properties
 import org.freedesktop.dbus.types.UInt32
 import java.io.Closeable
+import kotlin.time.Duration.Companion.milliseconds
 
 
 class GeoClueLocationSource(
@@ -43,7 +33,7 @@ class GeoClueLocationSource(
     private var geoClueClientProps: Properties? = null
 
     fun locationFlow(): Flow<LocationData> = flow {
-        emit(getCurrentLocation())
+        emit(getCurrentLocationWithRetry())
 
         callbackFlow<LocationData> {
             val handler = DBusSigHandler<Properties.PropertiesChanged> { signal ->
@@ -84,8 +74,9 @@ class GeoClueLocationSource(
     }.flowOn(Dispatchers.IO)
 
 
+    private val clientMutex = Mutex()
 
-    private fun getOrCreateClient(): Pair<Client, Properties> {
+    private suspend fun getOrCreateClient(): Pair<Client, Properties>  = clientMutex.withLock {
         geoClueClient?.let { client ->
             geoClueClientProps?.let { props ->
                 return client to props
@@ -106,6 +97,21 @@ class GeoClueLocationSource(
         return client to props
     }
 
+    private suspend fun getCurrentLocationWithRetry(
+        maxAttempts: Int = 20,
+        delayMs: Long = 1000,
+    ): LocationData {
+        var lastError: Throwable? = null
+        repeat(maxAttempts) { attempt ->
+            try {
+                return getCurrentLocation()
+            } catch (e: Exception) {
+                lastError = e
+                delay(delayMs.milliseconds)
+            }
+        }
+        throw lastError ?: IllegalStateException("Failed to get GeoClue location")
+    }
 
     suspend fun getCurrentLocation(): LocationData = withContext(Dispatchers.IO) {
         val (_, props) = getOrCreateClient()
@@ -165,44 +171,3 @@ class GeoClueLocationSource(
 
 fun Double.round2() = Math.round(this * 100) / 100.0
 
-
-
-/*fun Double.round2() = Math.round(this * 100) / 100.0
-
-*
-*
-    suspend fun startListening() {
-
-        _locationState.value = getCurrentLocation()
-
-        val (_, _) = getOrCreateClient()
-        try {
-            conn.addSigHandler(Properties.PropertiesChanged::class.java) { signal ->
-            if (!signal.path.contains("GeoClue2")) return@addSigHandler
-            if (!signal.propertiesChanged.containsKey("Location")) return@addSigHandler
-
-            val newLocPath = (signal.propertiesChanged["Location"]?.value as? DBusPath)
-                ?: return@addSigHandler
-
-            runCatching {
-                val locProps = conn.getRemoteObject(
-                    "org.freedesktop.GeoClue2",
-                    newLocPath.path,
-                    Properties::class.java
-                )
-                val lat = locProps.Get("org.freedesktop.GeoClue2.Location", "Latitude") as Double
-                val lon = locProps.Get("org.freedesktop.GeoClue2.Location", "Longitude") as Double
-                val timeZone = TimeZoneLookup().getTimeZone(lat, lon).result
-                _locationState.value = LocationData(lat, lon, timeZone)
-            }.onFailure {
-                println(">>> Error reading location: ${it.message}")
-            }
-        }
-        } catch (e: DBusException) {
-            println(">>> Failed to register signal handler: ${e.message}")
-        }
-
-    }
-
-*
-* */

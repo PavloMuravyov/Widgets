@@ -23,7 +23,6 @@ import org.koin.mp.KoinPlatform
 import widgets.composeapp.generated.resources.Res
 import widgets.composeapp.generated.resources.windowName
 import java.awt.Point
-import kotlin.time.Duration.Companion.milliseconds
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class WidgetsManager(
@@ -249,6 +248,7 @@ class WidgetsManager(
                     gridPositioningManager.generateGrid(widgetSizes, constraints!!)
                 }
             }
+            
         }
 
 
