@@ -1,6 +1,5 @@
 package widgets.widgetsModule.data.models
 
-import androidx.compose.ui.unit.DpSize
 import kotlinx.serialization.Serializable
 
 @Serializable
