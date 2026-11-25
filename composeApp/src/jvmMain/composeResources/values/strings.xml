@@ -29,4 +29,7 @@
     <string name="widget_mode_auto_title">Automatic</string>
     <string name="widget_mode_never_title">Never</string>
     <string name="add_widgets_title">Add widgets</string>
+    <string name="file_picker_hint">Select an executable file</string>
+    <string name="file_picker_error">The selected file is not executable</string>
+    <string name="file_picker_empty_error">The selected folder is empty</string>
 </resources>

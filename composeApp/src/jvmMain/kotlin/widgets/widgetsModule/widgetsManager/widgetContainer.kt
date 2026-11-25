@@ -13,6 +13,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -47,6 +48,9 @@ import io.github.fletchmckee.liquid.liquid
 import org.jetbrains.compose.resources.stringResource
 import widgets.composeapp.generated.resources.Res
 import widgets.composeapp.generated.resources.widgets_settings
+import widgets.widgetsModule.data.models.WidgetsTypes
+import widgets.widgetsModule.widgets.celsius.CloudLayer
+import widgets.widgetsModule.widgets.celsius.SkyPresets
 
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -120,6 +124,13 @@ fun widgetContainer(
                     )
             ) {
             }
+
+                if(viewModel.widgetSettings.value?.widgetType == WidgetsTypes.Celsius){
+                    Box(modifier = Modifier.fillMaxSize()) {
+                        CloudLayer(SkyPresets.Storm, Modifier.matchParentSize().alpha(0.5f))
+                }
+                }
+
         }
         Box(Modifier.fillMaxSize()) {
             content(capturedLayerState)

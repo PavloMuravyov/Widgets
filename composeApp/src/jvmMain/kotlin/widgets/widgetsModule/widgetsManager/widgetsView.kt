@@ -13,6 +13,8 @@ import widgets.widgetsModule.widgets.clock.ClockView
 import widgets.widgetsModule.widgets.clock.ClockViewModel
 import widgets.widgetsModule.widgets.notes.NotesView
 import widgets.widgetsModule.widgets.notes.NotesViewModel
+import widgets.widgetsModule.widgets.photos.PhotosViewModel
+import widgets.widgetsModule.widgets.photos.ui.PhotosView
 
 @Composable
 fun widgetsView(
@@ -54,7 +56,7 @@ fun widgetsView(
                         WidgetsTypes.Clock -> ClockView(viewModel as ClockViewModel, capturedLayerState)
                         WidgetsTypes.Notes -> NotesView(viewModel as NotesViewModel, capturedLayerState)
                         WidgetsTypes.AppTimes -> AppsTimeView(viewModel as AppsTimeViewModel, capturedLayerState)
-
+                        WidgetsTypes.Photos -> PhotosView(viewModel as PhotosViewModel)
                     }
                 }
 

@@ -15,6 +15,7 @@ import coil3.ImageLoader
 import coil3.PlatformContext
 import coil3.SingletonImageLoader
 import coil3.memory.MemoryCache
+import coil3.request.CachePolicy
 import coil3.svg.SvgDecoder
 import kotlinx.coroutines.flow.first
 import org.jetbrains.compose.resources.Font
@@ -29,8 +30,10 @@ import widgets.domain.SocketManager.SocketManager
 import widgets.domain.launchDetachedScript
 import widgets.domain.prepareRestartScript
 import widgets.widgetsModule.managers.SystemDataManager.SystemDataManager
+import widgets.widgetsModule.widgets.appstime.domain.repository.ScreenTime.ScreenTimeArchiveProvider
 import widgets.widgetsModule.widgetsManager.WidgetsManager
 import widgets.widgetsModule.widgetsManager.widgetsWindow
+import java.time.ZoneId
 
 
 fun main() {
@@ -40,12 +43,11 @@ fun main() {
         modules(dependencyInjections)
     }
 
-
-
     val systemDataManager = KoinPlatform.getKoin().get<SystemDataManager>()
     val widgetsManager = KoinPlatform.getKoin().get<WidgetsManager>()
     val socketManager = KoinPlatform.getKoin().get<SocketManager>()
     val densityProvider = KoinPlatform.getKoin().get<DensityProvider>()
+
 
     application {
         SingletonImageLoader.setSafe {
@@ -53,7 +55,7 @@ fun main() {
                 .components { add(SvgDecoder.Factory()) }
                 .memoryCache {
                     MemoryCache.Builder()
-                        .maxSizePercent(PlatformContext.INSTANCE, 0.05)
+                        .maxSizeBytes(64 * 1024 * 1024)
                         .build()
                 }
                 .diskCache(null)

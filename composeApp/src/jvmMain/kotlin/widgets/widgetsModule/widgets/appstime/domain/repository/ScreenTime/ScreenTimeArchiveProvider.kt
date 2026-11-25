@@ -6,6 +6,7 @@ import widgets.widgetsModule.widgets.appstime.domain.model.TodayScreenTime
 import com.sun.jna.NativeLong
 import com.sun.jna.Pointer
 import com.sun.jna.ptr.PointerByReference
+import java.io.File
 import java.time.Duration
 import java.time.Instant
 import java.time.LocalDate
@@ -79,7 +80,65 @@ private fun headSeek(): (Pointer) -> Unit =
 
 private const val BOUNDARY_SLEEP_ID = "__boundary__"
 
+private data class ActiveSleep(val start: Instant, val bootId: String?)
 
+private fun currentBootId(): String? =
+    runCatching { File("/proc/sys/kernel/random/boot_id").readText().trim().replace("-", "") }.getOrNull()
+
+private fun readSleepIntervals(since: Instant, now: Instant): List<SleepInterval> =
+    withJournal("_COMM=systemd-sleep", sinceSeek(since)) { journal ->
+        var asleepAtBoundary = false
+        var boundaryBootId: String? = null
+        while (Libsystemd.INSTANCE.sd_journal_previous(journal) > 0) {
+            val message = readField(journal, "MESSAGE") ?: continue
+            when {
+                SLEEP_ENTER_REGEX.containsMatchIn(message) -> {
+                    asleepAtBoundary = true
+                    boundaryBootId = readField(journal, "_BOOT_ID")
+                    break
+                }
+                SLEEP_EXIT_REGEX.containsMatchIn(message) -> break
+                SLEEP_FAILED_REGEX.containsMatchIn(message) -> break
+            }
+        }
+
+        Libsystemd.INSTANCE.sd_journal_seek_realtime_usec(journal, since.epochMillisToUsec())
+
+        val activeSleeps = mutableMapOf<String, ActiveSleep>()
+        if (asleepAtBoundary) activeSleeps[BOUNDARY_SLEEP_ID] = ActiveSleep(since, boundaryBootId)
+        val result = mutableListOf<SleepInterval>()
+
+        while (Libsystemd.INSTANCE.sd_journal_next(journal) > 0) {
+            val message = readField(journal, "MESSAGE") ?: continue
+            val timestamp = readRealtime(journal) ?: continue
+            val id = readField(journal, "_SYSTEMD_INVOCATION_ID")
+                ?: readField(journal, "_PID")
+                ?: continue
+
+            when {
+                SLEEP_ENTER_REGEX.containsMatchIn(message) ->
+                    activeSleeps[id] = ActiveSleep(timestamp, readField(journal, "_BOOT_ID"))
+
+                SLEEP_FAILED_REGEX.containsMatchIn(message) -> activeSleeps.remove(id)
+
+                SLEEP_EXIT_REGEX.containsMatchIn(message) -> {
+                    val start = (activeSleeps.remove(id) ?: activeSleeps.remove(BOUNDARY_SLEEP_ID))
+                        ?.start ?: continue
+                    result += SleepInterval(id, start, timestamp)
+                }
+            }
+        }
+
+        // Незавершений сон враховуємо лише якщо він із поточного бута
+        val bootNow = currentBootId()
+        activeSleeps.forEach { (id, s) ->
+            if (bootNow != null && s.bootId == bootNow) result += SleepInterval(id, s.start, now)
+        }
+        result
+    }
+
+
+/*
 private fun readSleepIntervals(since: Instant, now: Instant): List<SleepInterval> =
     withJournal("_COMM=systemd-sleep", sinceSeek(since)) { journal ->
         var asleepAtBoundary = false
@@ -125,7 +184,7 @@ private fun readSleepIntervals(since: Instant, now: Instant): List<SleepInterval
 
         activeSleeps.forEach { (id, start) -> result += SleepInterval(id, start, now) }
         result
-}
+}*/
 
 private fun readBootIntervals(since: Instant, now: Instant): List<BootInterval> =
     withJournal("_PID=1", headSeek()) { journal ->

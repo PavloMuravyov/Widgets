@@ -10,6 +10,8 @@ enum class WidgetsTypes {
     Clock,
     AppTimes,
 
+    Photos
+
 }
 
 
@@ -19,5 +21,6 @@ val WidgetsTypes.availableSizes: List<WidgetSizes>
             WidgetsTypes.Notes -> listOf(WidgetSizes.Small, WidgetSizes.Medium, WidgetSizes.Large)
             WidgetsTypes.Clock -> listOf(WidgetSizes.Small, WidgetSizes.Medium)
             WidgetsTypes.AppTimes -> listOf(WidgetSizes.Small, WidgetSizes.Medium)
+            WidgetsTypes.Photos -> listOf(WidgetSizes.Large)
         }
 

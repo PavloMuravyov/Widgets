@@ -22,6 +22,7 @@ import org.jetbrains.compose.resources.getString
 import org.koin.mp.KoinPlatform
 import widgets.composeapp.generated.resources.Res
 import widgets.composeapp.generated.resources.windowName
+import widgets.widgetsModule.widgets.photos.PhotosViewModel
 import java.awt.Point
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -310,6 +311,7 @@ class WidgetsManager(
             WidgetsTypes.Notes -> koin.get<NotesViewModel>()
             WidgetsTypes.Clock -> koin.get<ClockViewModel>()
             WidgetsTypes.AppTimes -> koin.get<AppsTimeViewModel>()
+            WidgetsTypes.Photos -> koin.get<PhotosViewModel>()
         }
     }
 

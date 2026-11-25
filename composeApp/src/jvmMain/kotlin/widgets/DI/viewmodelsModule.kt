@@ -8,6 +8,7 @@ import widgets.widgetsModule.widgets.widgetsWindow.WidgetsWindowViewModel
 import org.koin.core.module.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
+import widgets.widgetsModule.widgets.photos.PhotosViewModel
 
 
 val viewModelsModule = module {
@@ -15,6 +16,8 @@ val viewModelsModule = module {
     viewModel { NotesViewModel(get(), get() ,get (),get(named("compactJson"))) }
     viewModel { ClockViewModel(get(), get(), get(), get(), get ()) }
     viewModel { AppsTimeViewModel(get(), get(),get(named("compactJson")), get(),get(), get(),  get (), get()) }
+    viewModel { PhotosViewModel(get(), get(), get(), get(), get(named("compactJson"))) }
+
     viewModel { WidgetsWindowViewModel(get(), get()) }
 
 }
